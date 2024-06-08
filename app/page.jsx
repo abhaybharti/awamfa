@@ -1,14 +1,6 @@
 "use client";
-import Image from "next/image";
-import { useState, useEffect } from "react";
 
-const baseUrl = "http://127.0.0.1:8000/";
-const env = "DEV";
-
-export const api = {
-  MFAREQ: env === "PROD" ? `${baseUrl}mfareq` : "./mfareq.json",
-  ANSVAL: env === "PROD" ? `${baseUrl}ansval` : "./ansval.json",
-};
+import { useState } from "react";
 
 export default function Home() {
   const [activeQuestion, setActiveQuestion] = useState("");
@@ -43,10 +35,10 @@ export default function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          requestId: activeQuestion.requestId,
-          tranRefNo: activeQuestion.transRefNo,
-          userPK: activeQuestion.userPK,
-          question: activeQuestion.question,
+          requestId: activeQuestion?.requestId,
+          tranRefNo: activeQuestion?.transRefNo,
+          userPK: activeQuestion?.userPK,
+          question: activeQuestion?.question,
           answer: selectedAnswer,
         }),
       };
@@ -62,7 +54,12 @@ export default function Home() {
     <div className="h-screen flex flex-col bg-blue-100 align-middle mt-5 m-auto">
       <h1 className="font-bold underline">MFA App Integration Test</h1>
       <div className="flex gap-5 flex-col border-2 w-160 border-black m-auto">
-        <p className="p-2">Customer ID : {activeQuestion?.customerId}</p>
+        <p className="p-2">
+          Customer ID :{" "}
+          {activeQuestion.customerId !== undefined
+            ? activeQuestion.customerId
+            : ""}
+        </p>
         <p className="p-2">Question : {activeQuestion?.question}</p>
         <p className="p-2">request ID : {activeQuestion?.requestId}</p>
         <p className="p-2">TransferNo : {activeQuestion?.transRefNo}</p>
@@ -70,7 +67,8 @@ export default function Home() {
         <input
           type="text m-2"
           name="question"
-          width={30} value={selectedAnswer}
+          width={30}
+          value={selectedAnswer}
           onChange={(e) => setSelectedAnswer(e.target.value)}
         />
         <br></br>
