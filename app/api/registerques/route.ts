@@ -1,19 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import data from "./registerques.json";
 
-export async function POST(request: NextRequest) {
-  const tempData = { data };
-  try {
-    return NextResponse.json(tempData);
-  } catch (error) {
-    return NextResponse.json({ data: [], status: 500 });
-  }
+//Modify existing user question and answers
+export async function PUT(req: NextRequest) {
+  return NextResponse.json({ message: "This is put request" });
 }
 
-export default async function handler(req: NextRequest) {
-  if (req.method === "PUT") {
-    return NextResponse.json({ message: "This is put request" });
-  } else if (req.method === "POST") {
-    return NextResponse.json({ message: "This is POST request" });
-  }
+//Create a new user with questions/answers
+export async function POST(req: NextRequest) {
+  return NextResponse.json({ message: "This is POST REquest" });
 }

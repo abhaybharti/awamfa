@@ -1,18 +1,11 @@
 "use client";
-
 import { useState } from "react";
+import { ApiList } from "../../../utils/constant";
 
-export default function Home() {
+const RequestForQuestions = () => {
   const [activeQuestion, setActiveQuestion] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [result, setResult] = useState();
-
-  // const mfareq = "https://d08e-103-208-68-78.ngrok-free.app/mfareq/";
-  // const ansval = "https://d08e-103-208-68-78.ngrok-free.app/ansval/";
-  // const queslist = "https://d08e-103-208-68-78.ngrok-free.app/queslist/";
-  const mfareq = "/api/mfareq";
-  const ansval = "/api/ansval";
-  
 
   const getMfaQuestion = async () => {
     setSelectedAnswer("");
@@ -39,11 +32,11 @@ export default function Home() {
           createdBy: "guest",
         }),
       };
-      const response = await fetch(mfareq, requestOptions);
+      const response = await fetch(ApiList.mfareq, requestOptions);
       const json = await response.json();
 
-      // setActiveQuestion(json?.data);
-      setActiveQuestion(json?.data?.data);
+      setActiveQuestion(json?.data);
+      // setActiveQuestion(json?.data?.data);
     } catch (error) {
       console.log(error);
     }
@@ -61,7 +54,7 @@ export default function Home() {
           answer: selectedAnswer,
         }),
       };
-      const response = await fetch(ansval, requestOptions);
+      const response = await fetch(ApiList.ansval, requestOptions);
       const json = await response.json();
       setResult(json.message);
     } catch (error) {
@@ -70,13 +63,12 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-blue-100 align-middle mt-5 m-auto">
-      <h1 className="font-bold underline">MFA App Integration Test</h1>
+    <div>
       <div className="flex gap-5 flex-col border-2 w-160 border-black m-auto">
         <p className="p-2">
           Customer ID :{" "}
-          {activeQuestion.customerId !== undefined
-            ? activeQuestion.customerId
+          {activeQuestion?.customerId !== undefined
+            ? activeQuestion?.customerId
             : ""}
         </p>
         <p className="p-2">Question : {activeQuestion?.question}</p>
@@ -110,4 +102,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default RequestForQuestions;

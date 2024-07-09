@@ -28,11 +28,8 @@ export default function Registration() {
   }, []);
 
   return (
-    <>
-      <h1 className="font-bold text-center pt-5 bg-blue-300 h-screen text-2xl underline-offset-1">
-        Registration page
-      </h1>
-      {/* {listItems} */}
-    </>
+    <div className="flex gap-5 flex-col border-2 w-160 border-black m-auto h-screen justify-center text-center">
+      Registration page
+    </div>
   );
 }
