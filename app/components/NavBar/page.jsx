@@ -25,6 +25,14 @@ const NavBar = () => {
           {" "}
           <Link href="/components/RequestForCaptcha">Request For Captcha</Link>
         </li>
+        <li>
+          {" "}
+          <Link href="/components/LinearChart">Linear Chart</Link>
+        </li>
+        <li>
+          {" "}
+          <Link href="/components/BarChart">Bar Chart</Link>
+        </li>
       </ul>
     </div>
   );
