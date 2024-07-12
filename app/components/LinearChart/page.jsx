@@ -81,7 +81,7 @@ const LinearChart = () => {
       {
         label: "Dataset 1",
         // data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-        data: [40, 50, 80, 34, 24, 44, 54],
+        data: [40, 50, 80, 54, 64, 44, 54],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         // yAxisID: "y",
