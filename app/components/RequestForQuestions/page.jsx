@@ -98,7 +98,7 @@ const RequestForQuestions = () => {
             Submit Answer
           </button>
         </div>
-        <p>Result : {result}</p>
+        <p className="text-red-500 font-bold text-center">Result : {result}</p>
       </div>
     </div>
   );
