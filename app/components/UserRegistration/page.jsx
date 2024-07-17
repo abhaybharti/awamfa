@@ -71,88 +71,100 @@ const UserRegistration = () => {
     getQuestionList();
   }, []);
 
-  function getRandomListOfQuestions(arr, count) {
-    const result = [];
-    const useIndices = new Set();
-    while (result.length < count) {
-      const randomIndex = Math.floor(Math.random() * arr.length);
-      if (!useIndices.has(randomIndex)) {
-        result.push(arr[randomIndex]);
-        useIndices.add(randomIndex);
-      }
-    }
-    return result;
+  function getRandomIndexNumber(arr) {
+    return Math.floor(Math.random() * arr.length);
   }
 
   return (
     // className="flex gap-5 flex-col w-160  m-auto h-screen justify-center text-center"
-    <div>
+    <div className="flex justify-center">
       {questionList && questionList.length > 0 ? (
         <div
           className="flex flex-col m-3 max-w-96 gap-3"
           key={questionList[0].question_no}
         >
           <>
-            <label key={questionList[0].question_no} ref={firstQuesRef}>
-              {questionList[0].question}
+            <label
+              key={questionList[getRandomIndexNumber(questionList)].question_no}
+              ref={firstQuesRef}
+            >
+              {questionList[getRandomIndexNumber(questionList)].question}
             </label>
             <input
-              className="bg-blue-200"
+              className="bg-blue-200 ml-5"
               width={100}
               placeholder="Enter your Answer"
               onChange={() => setFirstQues(event.target.value)}
             ></input>
           </>
           <>
-            <label key={questionList[1].question_no} ref={secondQuesRef}>
+            <label
+              key={questionList[getRandomIndexNumber(questionList)].question_no}
+              ref={secondQuesRef}
+            >
               {questionList[1].question}
             </label>
             <input
-              className="bg-blue-200"
+              className="bg-blue-200 ml-5"
               width={100}
               placeholder="Enter your Answer"
               onChange={() => setSecondQues(event.target.value)}
             ></input>
           </>
           <>
-            <label key={questionList[2].question_no} ref={thirdQuesRef}>
+            <label
+              key={questionList[getRandomIndexNumber(questionList)].question_no}
+              ref={thirdQuesRef}
+            >
               {questionList[2].question}
             </label>
             <input
-              className="bg-blue-200"
+              className="bg-blue-200 ml-5"
               width={100}
               placeholder="Enter your Answer"
               onChange={() => setThirdQues(event.target.value)}
             ></input>
           </>
           <>
-            <label key={questionList[3].question_no} ref={fourQuesRef}>
+            <label
+              key={questionList[getRandomIndexNumber(questionList)].question_no}
+              ref={fourQuesRef}
+            >
               {questionList[3].question}
             </label>
             <input
-              className="bg-blue-200"
+              className="bg-blue-200 ml-5"
               width={100}
               placeholder="Enter your Answer"
               onChange={() => setFourQues(event.target.value)}
             ></input>
           </>
           <>
-            <label key={questionList[4].question_no} ref={fiveQuesRef}>
+            <label
+              key={questionList[getRandomIndexNumber(questionList)].question_no}
+              ref={fiveQuesRef}
+            >
               {questionList[4].question}
             </label>
             <input
-              className="bg-blue-200"
+              className="bg-blue-200 ml-5"
               width={100}
               placeholder="Enter your Answer"
               onChange={() => setFiveQues(event.target.value)}
             ></input>
           </>
+          <section className="flex justify-center">
+            <input
+              type="button"
+              onClick={handleSubmit}
+              value="Submit"
+              className="bg-slate-800 font-bold text-white rounded-lg"
+            />
+          </section>
         </div>
       ) : (
         <p> No Question Available</p>
       )}
-
-      <input type="button" onClick={handleSubmit} value="Submit" />
     </div>
   );
 };
